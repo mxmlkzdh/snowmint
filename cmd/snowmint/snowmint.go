@@ -1,4 +1,4 @@
-package snowmint
+package main
 
 func main() {
 
