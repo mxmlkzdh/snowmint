@@ -22,17 +22,17 @@ const (
 	timestampShift    = sequenceBits + machineIDBits + dataCenterIDBits
 )
 
+type config struct {
+	dataCenterID int
+	machineID    int
+	epoch        int64
+}
+
 type UniqueIDGenerator struct {
 	config
 	sequence      int64
 	lastTimestamp int64
 	mutex         sync.Mutex
-}
-
-type config struct {
-	dataCenterID int
-	machineID    int
-	epoch        int64
 }
 
 func NewUniqueIDGenerator(dataCenterID, machineID int, epoch int64) (*UniqueIDGenerator, error) {
