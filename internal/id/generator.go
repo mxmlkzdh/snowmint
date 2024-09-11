@@ -1,30 +1,26 @@
-package uidgen
+package id
 
 import (
 	"fmt"
-	"log"
 	"sync"
 	"time"
 )
 
 const (
-	sequenceBits     = 10
-	machineIDBits    = 5
-	dataCenterIDBits = 5
-
-	sequenceMask = (1 << sequenceBits) - 1
-
-	maxMachineID    = (1 << machineIDBits) - 1
-	maxDataCenterID = (1 << dataCenterIDBits) - 1
-
-	machineIDShift    = sequenceBits
-	dataCenterIDShift = sequenceBits + machineIDBits
-	timestampShift    = sequenceBits + machineIDBits + dataCenterIDBits
+	sequenceBits      = 10
+	nodeIDBits        = 5
+	dataCenterIDBits  = 5
+	sequenceMask      = (1 << sequenceBits) - 1
+	maxNodeID         = (1 << nodeIDBits) - 1
+	maxDataCenterID   = (1 << dataCenterIDBits) - 1
+	nodeIDShift       = sequenceBits
+	dataCenterIDShift = sequenceBits + nodeIDBits
+	timestampShift    = sequenceBits + nodeIDBits + dataCenterIDBits
 )
 
 type config struct {
 	dataCenterID int
-	machineID    int
+	nodeID       int
 	epoch        int64
 }
 
@@ -35,18 +31,17 @@ type UniqueIDGenerator struct {
 	mutex         sync.Mutex
 }
 
-func NewUniqueIDGenerator(dataCenterID, machineID int, epoch int64) (*UniqueIDGenerator, error) {
+func NewUniqueIDGenerator(dataCenterID, nodeID int, epoch int64) (*UniqueIDGenerator, error) {
 	if dataCenterID < 0 || dataCenterID > maxDataCenterID {
 		return nil, fmt.Errorf("'dataCenterID' cannot be less than 0 or greater than %d ", maxDataCenterID)
 	}
-	if machineID < 0 || machineID > maxMachineID {
-		return nil, fmt.Errorf("'machineID' cannot be less than 0 or greater than %d", maxMachineID)
+	if nodeID < 0 || nodeID > maxNodeID {
+		return nil, fmt.Errorf("'nodeID' cannot be less than 0 or greater than %d", maxNodeID)
 	}
 	if epoch < 0 {
 		return nil, fmt.Errorf("'epoch' cannot be less than 0")
 	}
-	log.Printf("NewUniqueIDGenerator: dataCenterID: %d, machineID: %d, epoch: %d", dataCenterID, machineID, epoch)
-	return &UniqueIDGenerator{config: config{dataCenterID, machineID, epoch}}, nil
+	return &UniqueIDGenerator{config: config{dataCenterID, nodeID, epoch}}, nil
 }
 
 func (u *UniqueIDGenerator) GenerateUniqueID() (int64, error) {
@@ -69,6 +64,6 @@ func (u *UniqueIDGenerator) GenerateUniqueID() (int64, error) {
 	u.lastTimestamp = currentTimestamp
 	return ((currentTimestamp - u.epoch) << timestampShift) |
 		(int64(u.dataCenterID) << dataCenterIDShift) |
-		(int64(u.machineID) << machineIDShift) |
+		(int64(u.nodeID) << nodeIDShift) |
 		u.sequence, nil
 }
