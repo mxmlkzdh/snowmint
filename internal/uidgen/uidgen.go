@@ -40,7 +40,7 @@ func NewUniqueIDGenerator(dataCenterID, machineID int, epoch int64) (*UniqueIDGe
 		return nil, fmt.Errorf("'dataCenterID' cannot be less than 0 or greater than %d ", maxDataCenterID)
 	}
 	if machineID < 0 || machineID > maxMachineID {
-		return nil, fmt.Errorf("'machineID' cannot be less than 0 or greater than %d", machineID)
+		return nil, fmt.Errorf("'machineID' cannot be less than 0 or greater than %d", maxMachineID)
 	}
 	if epoch < 0 {
 		return nil, fmt.Errorf("'epoch' cannot be less than 0")
