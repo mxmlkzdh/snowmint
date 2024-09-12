@@ -109,10 +109,10 @@ SnowMint provides easy-to-use SDKs for popular programming languages to integrat
 | [Java SDK](https://github.com/mxmlkzdh/snowmint-java) | The Java SDK offers a similarly efficient way to connect to the SnowMint server, providing support for applications in JVM environments. |
 
 ## Benchmarks
-SnowMint has been benchmarked to handle thousands of requests per second, with latencies in the microsecond range. Thanks to the custom protocol and raw TCP connections, it outperforms traditional HTTP-based systems by a significant margin.
+SnowMint has been benchmarked to handle tens of thousands of requests per second, with latencies in the microsecond range. Thanks to the custom protocol and raw TCP connections, it outperforms traditional HTTP-based systems by a significant margin.
 
 - **ID Generation Rate**: More than 100,000 IDs per second per node.
-- **Latency**: Sub-millisecond, typically under X microseconds.
+- **Latency**: Sub-millisecond, typically under 10 microseconds.
    - In a native deployment, response time for each unique ID is roughly between 5 to 10 microseconds.
    - In a Docker container, response time for each unique ID is roughly between 10 to 15 microseconds.
 
