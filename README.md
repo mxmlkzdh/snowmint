@@ -73,7 +73,7 @@ The SnowMint server accepts the following optional command line arguments:
 
 `--node` The server's node ID between 0 and 31 (default: 0)
 
-`--epoch` Your organization's epoch in milliseconds (default: 0 _Wednesday, December 31, 1969 7:00:00 PM_)
+`--epoch` Your organization's epoch in milliseconds (default: 0 _Thursday, January 01 1970 00:00:00.00 GMT+0000_)
 
 Note that in distributed systems, it is **crucial** that all instances of SnowMint servers are started with the same `epoch`.
 

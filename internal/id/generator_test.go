@@ -17,7 +17,7 @@ func TestNewUniqueIDGenerator(t *testing.T) {
 		{"Too_Large_Node_ID", 0, 32, 0, nil, true},
 		{"Negative_Epoch", 0, 0, -1, nil, true},
 		{"Default", 0, 0, 0, &UniqueIDGenerator{}, false},
-		{"Default", 11, 17, 946684800000, &UniqueIDGenerator{config: config{11, 17, 946684800000}}, false},
+		{"Created", 11, 17, 946684800000, &UniqueIDGenerator{config: config{11, 17, 946684800000}}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
