@@ -78,8 +78,10 @@ The SnowMint server accepts the following optional command line arguments:
 Note that in distributed systems, it is **crucial** that all instances of SnowMint servers are started with the same `epoch`.
 
 ### Native Deployment
-1. Download the latest release from the [SnowMint releases page](#) (or alternatively, you can clone this repository and build the binary yourself with `go build`).
-2. Extract the archive and run the binary with your desired flags; e.g.:
+Currently, SnowMint is available on Linux (amd64 and arm64), macOS (amd64 and arm64), and Windows.
+
+1. Download the latest release from the [SnowMint releases page](https://github.com/mxmlkzdh/snowmint/releases) (or alternatively, you can clone this repository and build the binary yourself with `go build`).
+2. Extract the archive, choose the binary compatible with your operating system, and run it with your desired flags; e.g.:
    ```bash
    ./snowmint --node=<NODE_ID>
    ```
