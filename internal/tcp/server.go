@@ -17,7 +17,11 @@ type Server struct {
 }
 
 func NewServer(address string, port int, uniqueIDGenerator *id.UniqueIDGenerator) *Server {
-	return &Server{address, port, uniqueIDGenerator}
+	return &Server{
+		address:           address,
+		port:              port,
+		uniqueIDGenerator: uniqueIDGenerator,
+	}
 }
 
 func (s *Server) ListenAndServe() error {
