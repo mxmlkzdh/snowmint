@@ -30,7 +30,7 @@ The binary representation of this ID is presented below. Note that for this part
 ```
 
 ### Sorting IDs
-Since the first significant 43 bits represent the timestamp, SnowMint IDs are naturally sortable by creation time. IDs generated earlier will have a smaller numeric value than those generated later, allowing simple chronological ordering by comparing ID values directly. You can easily retreieve this timestamp by the following formula:
+Since the first significant 43 bits represent the timestamp, SnowMint IDs are naturally sortable by creation time. IDs generated earlier will have a smaller numeric value than those generated later, allowing simple chronological ordering by comparing ID values directly. You can easily retrieve this timestamp by the following formula:
 ```
 (SnowMintID >> 20) + EPOCH
 ```
@@ -63,7 +63,7 @@ This minimalist protocol reduces overhead, delivering unparalleled speed compare
 
 ## Install
 
-The SnowMint server accepts the following optional commandline flags:
+The SnowMint server accepts the following optional command line arguments:
 
 `--address` The address for the server to bind to (default: localhost)
 
@@ -101,10 +101,10 @@ echo GET | nc localhost 8080
 
 SnowMint provides easy-to-use SDKs for popular programming languages to integrate with your system and retrieve unique IDs.
 
-| Language  | Description |
-| ------------- | ------------- |
-| [Go SDK](https://github.com/mxmlkzdh/snowmint-go)  | The Go client SDK allows seamless integration into Go applications. A simple GET request over TCP fetches the unique ID.  |
-| [Java SDK](https://github.com/mxmlkzdh/snowmint-java)  | The Java SDK offers a similarly efficient way to connect to the SnowMint server, providing support for applications in JVM environments.  |
+| Language                                              | Description                                                                                                                              |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [Go SDK](https://github.com/mxmlkzdh/snowmint-go)     | The Go client SDK allows seamless integration into Go applications. A simple `GET` request over TCP fetches the unique ID.               |
+| [Java SDK](https://github.com/mxmlkzdh/snowmint-java) | The Java SDK offers a similarly efficient way to connect to the SnowMint server, providing support for applications in JVM environments. |
 
 ## Benchmarks
 SnowMint has been benchmarked to handle thousands of requests per second, with latencies in the microsecond range. Thanks to the custom protocol and raw TCP connections, it outperforms traditional HTTP-based systems by a significant margin.
