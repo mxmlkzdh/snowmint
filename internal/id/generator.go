@@ -2,6 +2,7 @@ package id
 
 import (
 	"fmt"
+	"log"
 	"sync"
 	"time"
 )
@@ -33,14 +34,15 @@ type UniqueIDGenerator struct {
 
 func NewUniqueIDGenerator(dataCenterID, nodeID int, epoch int64) (*UniqueIDGenerator, error) {
 	if dataCenterID < 0 || dataCenterID > maxDataCenterID {
-		return nil, fmt.Errorf("'dataCenterID' cannot be less than 0 or greater than %d ", maxDataCenterID)
+		return nil, fmt.Errorf("dataCenterID cannot be less than 0 or greater than %d ", maxDataCenterID)
 	}
 	if nodeID < 0 || nodeID > maxNodeID {
-		return nil, fmt.Errorf("'nodeID' cannot be less than 0 or greater than %d", maxNodeID)
+		return nil, fmt.Errorf("nodeID cannot be less than 0 or greater than %d", maxNodeID)
 	}
 	if epoch < 0 {
-		return nil, fmt.Errorf("'epoch' cannot be less than 0")
+		return nil, fmt.Errorf("epoch cannot be less than 0")
 	}
+	log.Printf("Unique ID generator created with dataCenterID: %d, nodeID: %d, epoch: %d", dataCenterID, nodeID, epoch)
 	return &UniqueIDGenerator{config: config{dataCenterID, nodeID, epoch}}, nil
 }
 
