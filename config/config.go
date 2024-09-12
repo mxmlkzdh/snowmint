@@ -13,7 +13,7 @@ type Config struct {
 }
 
 func LoadConfig() *Config {
-	address := flag.String("address", "localhost", "The address to bind to.")
+	address := flag.String("address", "0.0.0.0", "The address to bind to.")
 	port := flag.Int("port", 8080, "The port to bind to.")
 	dataCenterID := flag.Int("datacenter", 0, "The data center ID.")
 	nodeID := flag.Int("node", 0, "The node ID.")
