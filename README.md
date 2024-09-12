@@ -90,7 +90,7 @@ Currently, SnowMint is available on Linux (amd64 and arm64), macOS (amd64 and ar
 To run SnowMint in a Docker container, simply use the following with your desired flags; e.g.:
 ```bash
 docker pull mxmlkzdh/snowmint:latest
-docker run -d --name snowmint -p 8080:8080 mxmlkzdh/snowmint --node=<NODE_ID>
+docker run -d --name snowmint -p 8080:8080 mxmlkzdh/snowmint --address=0.0.0.0 --node=<NODE_ID>
 ```
 
 ### Generate Your First SnowMint ID
