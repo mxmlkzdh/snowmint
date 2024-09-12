@@ -53,6 +53,17 @@ This combination ensures that SnowMint can generate thousands of unique IDs per 
 ### Sorting IDs
 Since the first 41 bits represent the timestamp, SnowMint IDs are naturally sortable by creation time. IDs generated earlier will have a smaller numeric value than those generated later, allowing simple chronological ordering by comparing ID values directly.
 
+### Time Synchronization in Distributed Systems
+
+In distributed systems, it is **crucial** that all nodes maintain synchronized clocks to ensure the uniqueness of the IDs. Since the Snowflake algorithm heavily relies on the system timestamp (41 bits of the ID represent the time), any drift in a node's clock can lead to the generation of duplicate IDs, which breaks the uniqueness guarantee.
+
+To avoid this issue:
+- **Synchronize Time Across Nodes**: Use tools like **NTP (Network Time Protocol)** or similar to keep system clocks in sync.
+- **Monitor Time Drift**: Ensure that the time drift between nodes is kept to a minimum (e.g., within a few milliseconds).
+- **Fallback Mechanism**: If a node detects that its clock is out of sync, it should halt ID generation until the clock is corrected to prevent collisions.
+
+Failing to synchronize time across all nodes may result in non-unique IDs being generated, which could lead to issues in systems where uniqueness is critical.
+
 ## The Protocol
 
 SnowMint uses a lightweight, highly optimized custom protocol over raw TCP connections. This design focuses on speed and simplicity, ensuring ultra-fast ID generation and retrieval.
