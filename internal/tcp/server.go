@@ -47,7 +47,6 @@ func (s *Server) handleConnection(conn net.Conn) {
 	for {
 		input, err := reader.ReadString('\n')
 		if err != nil {
-			log.Println("connection closed:", err)
 			return
 		}
 		response := s.processCommand(strings.TrimSpace(input))
