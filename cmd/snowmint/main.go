@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/mxmlkzdh/snowmint/config"
+	"github.com/mxmlkzdh/snowmint/internal/config"
 	"github.com/mxmlkzdh/snowmint/internal/id"
 	"github.com/mxmlkzdh/snowmint/internal/tcp"
 )
